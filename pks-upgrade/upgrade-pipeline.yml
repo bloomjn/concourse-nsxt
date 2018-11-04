@@ -104,7 +104,7 @@ jobs:
     - get: pivnet-product
       resource: tile
       passed: [ upload-and-stage-tile ]
-      trigger: true
+      trigger: false
       params:
         globs: [ ]
   - task: apply-changes
