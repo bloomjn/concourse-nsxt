@@ -8,7 +8,7 @@ CONCOURSE_USER=nsx
 CONCOURSE_PW=vmware
 
 alias fly-s="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c pipelines/nsx-t-install.yml -l nsx-t-params.yml"
-alias fly-d="fly -t $CONCOURSE_TARGET destory-pipeline -p $PIPELINE_NAME
+alias fly-d="fly -t $CONCOURSE_TARGET destory-pipeline -p $PIPELINE_NAME"
 alias fly-l="fly -t $CONCOURSE_TARGET containers | grep $PIPELINE_NAME"
 alias fly-h="fly -t $CONCOURSE_TARGET hijack -b "
 
