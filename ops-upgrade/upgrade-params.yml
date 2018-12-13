@@ -1,0 +1,53 @@
+# Copyright 2017-Present Pivotal Software, Inc. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+opsman_timeout_seconds: 3600 # time to wait for new OM VM to come up
+
+# Either opsman_client_id/opsman_client_secret or opsman_admin_username/opsman_admin_password needs to be specified
+# If you are using opsman_admin_username/opsman_admin_password, edit opsman_client_id/opsman_client_secret to be an empty value.
+# If you are using opsman_client_id/opsman_client_secret, edit opsman_admin_username/opsman_admin_password to be an empty value. 
+opsman_client_id:
+opsman_client_secret:
+opsman_admin_username: admin
+opsman_admin_password: VMware1!
+
+opsman_ssh_password: VMware1!   # ubuntu user ssh password
+opsman_major_minor_version: ^2\.3\.[0-9]+$ # Ops Manager minor version to track (e.g ^2\.1\.[0-9]+$ will track 2.0.x versions)   # Ops Manager minor version to track
+opsman_domain_or_ip_address: vlab-opsman.vballin.com #FQDN to access Ops Manager without protocol (will use https), ex: opsmgr.example.com
+opsman_passphrase: VMware1!
+pivnet_token: tVBsH66rUWRLnRTAwqnK # value must be a Pivotal Network legacy token; UAA API tokens do not work currently work
+# Do not specify with a trailing slash.
+vcenter_url: https://vlab-vcsa.vballin.com
+vcenter_username: administrator@vsphere.local
+vcenter_password: VMware1!
+vcenter_datacenter: vlab-dc
+vcenter_datastore: vlab-nfs-ds-ssd
+vcenter_insecure: true
+vcenter_ca_cert:
+# vCenter Cluster or Resource Pool to use to deploy Ops Manager.
+# Possible formats:
+#   cluster:       /<Data Center Name>/host/<Cluster Name>
+#   resource pool: /<Data Center Name>/host/<Cluster Name>/Resources/<Resource Pool Name>
+vcenter_cluster: vlab-mgmt
+vcenter_resource_pool: vlab-pks-mgmt
+
+om_vm_folder: 
+opsman_ip: 172.31.0.2
+netmask: 255.255.255.0
+gateway: 172.31.0.1
+dns: 192.168.64.10 #example: 8.8.8.8,8.8.4.4
+ntp: 0.pool.ntp.org,1.pool.ntp.org #example: 0.pool.ntp.org,1.pool.ntp.org
+opsman_network: ls-pks-mgmt
+git_private_key: e80bf56fbb46cdc1d3a62c1745eb694a59d1fc6d
+opsman_disk_type: thin # use thick or thin disk provisioning

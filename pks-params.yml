@@ -82,7 +82,7 @@ nsx_password: "VMware1!"                  # password for nsx access
 
 # Additional network for PKS Controller & Harbor
 pks_network_name: "PKS-COMP"             # Logical switch for PKS-Services
-pks_vsphere_network: "ls-pks-service"    # vCenter PKS-Services  network name for PKS - if empty quotes, then this network would be skipped
+pks_vsphere_network: "ls-data-services"    # vCenter PKS-Services  network name for PKS - if empty quotes, then this network would be skipped
 pks_nw_cidr: 172.31.2.0/23               # PKS-Services network CIDR, ex: 10.0.0.0/22
 pks_excluded_range: 172.31.2.1           # PKS-Services network exclusion range
 pks_nw_dns: 192.168.64.60                # PKS-Services network DNS
