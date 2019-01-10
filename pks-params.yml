@@ -1,6 +1,6 @@
 # Pipeline resource configuration
 pivnet_token: tVBsH66rUWRLnRTAwqnK      # Pivnet token for downloading resources from Pivnet. Find this token at https://network.pivotal.io/users/dashboard/edit-profile
-opsman_major_minor_version: ^2\.3.*$    # PCF Ops Manager minor version to track
+opsman_major_minor_version: ^2\.4.*$    # PCF Ops Manager minor version to track
 pks_major_minor_version: ^1\.2.*$       # Use this once PKS v1.1 becomes GA
 
 # vCenter configuration
@@ -134,7 +134,7 @@ pks_tile_cluster_service_network_name: PKS-COMP # Should match the PKS-Services 
 pks_tile_nsx_skip_ssl_verification: true # can be true or false
 
 # Disable nsxt errand
-pks_tile_disable_nsx_t_precheck_errand: true
+pks_tile_disable_nsx_t_precheck_errand: false
 
 pks_tile_t0_router_name: t0-pks                                 # EDIT - Name of T0 Router to be used for PKS
 pks_tile_nsx_nat_mode: true                                     # Set to true

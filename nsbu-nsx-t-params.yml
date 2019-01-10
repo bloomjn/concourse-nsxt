@@ -4,7 +4,7 @@ nsx_t_pipeline_branch: master
 
 # format: "http://172.18.0.2"
 nsx_image_webserver: "http://nginx"
-ova_file_name: "nsx-unified-appliance-2.3.0.0.0.10085405.ova" #Uncomment this if downloaded file manually and placed under /home/concourse
+ova_file_name: "nsx-unified-appliance-2.3.0.2.0.10930805.ova" #Uncomment this if downloaded file manually and placed under /home/concourse
 ovftool_file_name: "VMware-ovftool-4.3.0-7948156-lin.x86_64.bundle"   #Uncomment this if downloaded file manually and placed under /home/concourse
 
 # vCenter details to deploy the Mgmt OVAs (Mgr, Edge, Controller)
@@ -80,9 +80,9 @@ edge_hostname_prefix: vlab-edge
 edge_transport_node_prefix: edge-tn
 edge_cli_password: "VMware1!"
 edge_root_password: "VMware1!"
-edge_deployment_size: "medium" #Large recommended for PKS deployments
+edge_deployment_size: "large" #Large recommended for PKS deployments
 vc_datacenter_for_edge: vlab-dc
-vc_cluster_for_edge: vlab-mgmt
+vc_cluster_for_edge: vlab-mgmt-edge
 vc_datastore_for_edge: vlab-nfs-ds-ssd
 vc_uplink_network_for_edge: "nsx-uplink"
 vc_overlay_network_for_edge: "nsx-transport"
