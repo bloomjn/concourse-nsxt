@@ -34,7 +34,7 @@ om_vm_power_state: true                         # Whether to power on Ops Manage
 # Possible formats:
 #   cluster:       /<Data Center Name>/host/<Cluster Name>
 #   resource pool: /<Data Center Name>/host/<Cluster Name>/Resources/<Resource Pool Name>
-om_resource_pool: vlab-pks-mgmt
+om_resource_pool: vlab-pks-mgmt-01
 
 ephemeral_storage_names: vlab-nfs-ds-ssd    # Ephemeral Storage names in vCenter for use by PCF
 persistent_storage_names: vlab-nfs-ds-ssd   # Persistent Storage names in vCenter for use by PCF
@@ -49,15 +49,15 @@ vm_disk_type: "thin"          # Disk type for BOSH provisioned VM. (thick|thin)
 # AZ configuration for Ops Director
 az_1_name: PKS-MGMT               # Logical name of availability zone. No spaces or special characters.
 az_1_cluster_name: vlab-mgmt      # Name of cluster in vCenter for PKS
-az_1_rp_name:                     # Resource pool name in vCenter for PKS
+az_1_rp_name: vlab-pks-mgmt-01                    # Resource pool name in vCenter for PKS
 
-az_2_name: PKS-COMP               # Logical name of availability zone. No spaces or special characters.
+az_2_name: PKS-COMP-1               # Logical name of availability zone. No spaces or special characters.
 az_2_cluster_name: vlab-cna       # Name of cluster in vCenter for PKS
-az_2_rp_name: vlab-pks-01         # Resource pool name in vCenter for PKS
+az_2_rp_name: vlab-pks-comp-01         # Resource pool name in vCenter for PKS
 
-az_3_name:                        # Logical name of availability zone. No spaces or special characters.
-az_3_cluster_name:                # Name of cluster in vCenter for PKS
-az_3_rp_name:                     # Resource pool name in vCenter for PKS
+az_3_name: PKS-COMP-2                        # Logical name of availability zone. No spaces or special characters.
+az_3_cluster_name: vlab-mgmt               # Name of cluster in vCenter for PKS
+az_3_rp_name: vlab-pks-comp-02                    # Resource pool name in vCenter for PKS
 
 ntp_servers: us.pool.ntp.org      # Comma-separated list of NTP servers to use for VMs deployed by BOSH
 enable_vm_resurrector: true       # Whether to enable BOSH VM resurrector
@@ -87,7 +87,7 @@ pks_nw_cidr: 172.31.2.0/23               # PKS-Services network CIDR, ex: 10.0.0
 pks_excluded_range: 172.31.2.1           # PKS-Services network exclusion range
 pks_nw_dns: 192.168.64.60                # PKS-Services network DNS
 pks_nw_gateway: 172.31.2.1               # PKS-Services network Gateway
-pks_nw_azs: PKS-COMP                     # Comma separated list of AZ's to be associated with this network
+pks_nw_azs: PKS-COMP-1                     # Comma separated list of AZ's to be associated with this network
 is_service_network: true                 # Required select service network option in Ops man true or false
 
 ## PKS Tile section ##
@@ -197,13 +197,13 @@ pks_tile_telemetry: enabled # can be enabled or disabled
 
 pks_tile_plan_details:
 - plan_detail:
-    name: "small"  # the name that appears for end users to choose
+    name: "DevTest"  # the name that appears for end users to choose
     plan_selector: plan1_selector # Dont change the value of selector - Needs to be planN_selector
     is_active: true
-    description: "Small plan"
+    description: "DevTest Environment"
     # AZ can be only a single value for PKS v1.0
     # There can be a comma separated list for PKS v1.1 which supports multiple AZs
-    az_placement: PKS-COMP  # Specify the AZ in which the cluster will be created, single for PKS v1.0
+    az_placement: PKS-COMP-1  # Specify the AZ in which the cluster will be created, single for PKS v1.0
     master_vm_type: medium
     worker_vm_type: medium
     persistent_disk_type: "10240" # Used in PKS 1.0
@@ -223,20 +223,20 @@ pks_tile_plan_details:
     # Use with caution.
     disable_deny_escalating_exec: false # default false
 - plan_detail:
-    name: "medium"  # the name that appears for end users to choose
+    name: "Staging"  # the name that appears for end users to choose
     is_active: true
     plan_selector: plan2_selector # Dont change the value of selector - Needs to be planN_selector
-    description: "Medium plan"
+    description: "Staging"
     # AZ can be only a single value for PKS v1.0
     # There can be a comma separated list for PKS v1.1 which supports multiple AZs
-    az_placement: PKS-COMP  # Specify the AZ in which the cluster will be created, single for PKS v1.0
+    az_placement: PKS-COMP-1  # Specify the AZ in which the cluster will be created, single for PKS v1.0
     master_vm_type: medium
     worker_vm_type: large
     persistent_disk_type: "10240" # Used in PKS 1.0
     master_persistent_disk_type: "10240" # Used in PKS 1.1+
     worker_persistent_disk_type: "102400" # Used in PKS 1.1+
     master_instances: 1    # The number of K8s worker instances
-    worker_instances: 5    # The number of K8s worker instances
+    worker_instances: 3    # The number of K8s worker instances
     errand_vm_type: micro
     addons_spec: # "kind: StorageClass
     #apiVersion: storage.k8s.io/v1
@@ -252,10 +252,34 @@ pks_tile_plan_details:
     # Use with caution.
     disable_deny_escalating_exec: false # default false
 - plan_detail:
-    name: "large"  # the name that appears for end users to choose
-    is_active: false
+    name: "Production"  # the name that appears for end users to choose
+    is_active: true
     plan_selector: plan3_selector # Dont change the value of selector - Needs to be planN_selector
-    # other fields not considered if its not active
+    description: "Production"
+    # AZ can be only a single value for PKS v1.0
+    # There can be a comma separated list for PKS v1.1 which supports multiple AZs
+    az_placement: PKS-COMP-1  # Specify the AZ in which the cluster will be created, single for PKS v1.0
+    master_vm_type: medium
+    worker_vm_type: large
+    persistent_disk_type: "10240" # Used in PKS 1.0
+    master_persistent_disk_type: "10240" # Used in PKS 1.1+
+    worker_persistent_disk_type: "102400" # Used in PKS 1.1+
+    master_instances: 3    # The number of K8s worker instances
+    worker_instances: 5    # The number of K8s worker instances
+    errand_vm_type: micro
+    addons_spec: # "kind: StorageClass
+    #apiVersion: storage.k8s.io/v1
+    #metadata:
+    #name: thin
+    #annotations:
+    #storageclass.kubernetes.io/is-default-class: "true""
+ # Kubernetes yml that contains specifications of addons to run on every cluster. This is an experimental feature. Please consider carefully before applying this to your plan
+    allow_privileged_containers: true  # Privileged containers run with host-like permissions. Allowing your users to deploy privileged containers in clusters using this plan can create security vulnerabilities and may impact other tiles. Use with caution."
+    # The admission controller will deny exec and attach commands to pods that run with escalated privileges that allow host access.
+    # If checked, the admission controller will be disabled.
+    # Clusters in this plan can then create security vulnerabilities and may impact other tiles.
+    # Use with caution.
+    disable_deny_escalating_exec: false # default false
 
 # Use this for downloading PKS from a s3 bucket
 # s3_bucket: pks-tile-s3              # Required for S3. ID of the AWS S3 bucket to download Pivotal releases from
