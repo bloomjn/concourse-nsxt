@@ -1,7 +1,7 @@
 # Pipeline resource configuration
 pivnet_token: tVBsH66rUWRLnRTAwqnK      # Pivnet token for downloading resources from Pivnet. Find this token at https://network.pivotal.io/users/dashboard/edit-profile
 opsman_major_minor_version: ^2\.4.*$    # PCF Ops Manager minor version to track
-pks_major_minor_version: ^1\.2.*$       # Use this once PKS v1.1 becomes GA
+pks_major_minor_version: ^1\.3.*$       # Use this once PKS v1.1 becomes GA
 
 # vCenter configuration
 vcenter_host: vlab-vcsa.vballin.com       # vCenter host or IP
@@ -295,7 +295,7 @@ pks_tile_plan_details:
 ######## PKS tile-specific parameters
 product_name: harbor-container-registry  # do not change
 product_slug: harbor-container-registry  # do not change
-harbor_product_version: ^1\.6\..*$  # PKS tile version to install
+harbor_product_version: ^1\.7\..*$  # PKS tile version to install
 product_globs: "*.pivotal"
 
 # Note: check companion "pks_vault_params.sh" script for automated credentials
