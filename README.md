@@ -105,94 +105,94 @@ services:
 
 3. Import the nsx-t pipeline with your parameters into Concourse using [nsxt-setup.sh](nsxt-setup.sh). You will need to change the "CONCOURSE_ENDPOINT" to your concourse host `fqdn:8080`. You may also have to change this line `alias fly-s="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c ~/nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l nsbu-nsx-t-params.yml"` to match where your repo was cloned to and where you saved the parameters file.
 
-```
-#!/bin/bash
+    ```
+    #!/bin/bash
 
-# EDIT names and domain
-CONCOURSE_ENDPOINT=CHANGEME:8080
-CONCOURSE_TARGET=nsx-concourse
-PIPELINE_NAME=install-nsx-t
-CONCOURSE_USER=nsx
-CONCOURSE_PW=vmware
+    # EDIT names and domain
+    CONCOURSE_ENDPOINT=CHANGEME:8080
+    CONCOURSE_TARGET=nsx-concourse
+    PIPELINE_NAME=install-nsx-t
+    CONCOURSE_USER=nsx
+    CONCOURSE_PW=vmware
 
-alias fly-s="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c ~/nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l nsbu-nsx-t-params.yml"
-alias fly-d="fly -t $CONCOURSE_TARGET destroy-pipeline -p $PIPELINE_NAME"
-alias fly-l="fly -t $CONCOURSE_TARGET containers | grep $PIPELINE_NAME"
-alias fly-h="fly -t $CONCOURSE_TARGET hijack -b "
+    alias fly-s="fly -t $CONCOURSE_TARGET set-pipeline -p $PIPELINE_NAME -c ~/nsx-t-datacenter-ci-pipelines/pipelines/nsx-t-install.yml -l nsbu-nsx-t-params.yml"
+    alias fly-d="fly -t $CONCOURSE_TARGET destroy-pipeline -p $PIPELINE_NAME"
+    alias fly-l="fly -t $CONCOURSE_TARGET containers | grep $PIPELINE_NAME"
+    alias fly-h="fly -t $CONCOURSE_TARGET hijack -b "
 
-echo "Concourse target set to $CONCOURSE_ENDPOINT"
-echo "Login using fly"
-echo ""
+    echo "Concourse target set to $CONCOURSE_ENDPOINT"
+    echo "Login using fly"
+    echo ""
 
-fly --target $CONCOURSE_TARGET login -u $CONCOURSE_USER -p $CONCOURSE_PW --concourse-url http://${CONCOURSE_ENDPOINT} -n main
-```
+    fly --target $CONCOURSE_TARGET login -u $CONCOURSE_USER -p $CONCOURSE_PW --concourse-url http://${CONCOURSE_ENDPOINT} -n main
+    ```
 
-`source nsxt-setup.sh`
+    `source nsxt-setup.sh`
 
 4. Import the NSX pipeline using the `fly` cli command on your concourse host.
 
-`cd ~/concourse-nsxt`
+    `cd ~/concourse-nsxt`
 
-`source nsxt-setup.sh`
+    `source nsxt-setup.sh`
 
-`fly-s`
-- confirm the parameters file import with `y`
+    `fly-s`
+    - confirm the parameters file import with `y`
 
-<details><summary>Screenshot 4.1</summary>
-<img src="images/nsx-pipeline-dir.png">
-</details>
+    <details><summary>Screenshot 4.1</summary>
+    <img src="images/nsx-pipeline-dir.png">
+    </details>
 
-<details><summary>Screenshot 4.2</summary>
-<img src="images/source-nsxt-setup.png">
-</details>
+    <details><summary>Screenshot 4.2</summary>
+    <img src="images/source-nsxt-setup.png">
+    </details>
 
-<details><summary>Screenshot 4.3</summary>
-<img src="images/pipeline-import.png">
-</details>
+    <details><summary>Screenshot 4.3</summary>
+    <img src="images/pipeline-import.png">
+    </details>
 
-<details><summary>Screenshot 4.4</summary>
-<img src="images/confirm-import.png">
-</details>
+    <details><summary>Screenshot 4.4</summary>
+    <img src="images/confirm-import.png">
+    </details>
 
 5. Go back to the web browser and confirm that the pipeline has imported and hit the **Play** button
 
-<details><summary>Screenshot 5</summary>
-<img src="images/pipeline-ui.png">
-</details>
+    <details><summary>Screenshot 5</summary>
+    <img src="images/pipeline-ui.png">
+    </details>
 
 6. Click on *install-nsx-t* 
 
-<details><summary>Screenshot 6</summary>
-<img src="images/pipeline-pending.png">
-</details>
+    <details><summary>Screenshot 6</summary>
+    <img src="images/pipeline-pending.png">
+    </details>
 
 7. Verify that the pipeline is not in an *errored* state.
 - You will see Maroon colored boxes if the pipline is errored out.
     - If it is in an errored state perform a `fly-d` and `fly-s` to destory and re-import the pipeline on the cli-vm.
 
-<details><summary>Screenshot 7</summary>
-<img src="images/pipeline-started.png">
-</details>
+    <details><summary>Screenshot 7</summary>
+    <img src="images/pipeline-started.png">
+    </details>
 
 8. Click on the **install-nsx-t**
 
-<details><summary>Screenshot 8</summary>
-<img src="images/install-nsx-t.png">
-</details>
+    <details><summary>Screenshot 8</summary>
+    <img src="images/install-nsx-t.png">
+    </details>
 
 9. Execute the pipeline by clicking on the **Plus** button in the upper right-hand corner
 
-<details><summary>Screenshot 9</summary>
-<img src="images/install-nsx-t-plus.png">
-</details>
+    <details><summary>Screenshot 9</summary>
+    <img src="images/install-nsx-t-plus.png">
+    </details>
 
 10. Grab some coffee and watch the magic happen! 
 
-<img src="images/automate-all-things.png">
+    <img src="images/automate-all-things.png">
 
 11. After coffee :coffee: and around 45 to 60 minutes you should see this.
 
-<details><summary>Screenshot 11</summary>
-<img src="images/pipeline-complete.png">
-</details>
+    <details><summary>Screenshot 11</summary>
+    <img src="images/pipeline-complete.png">
+    </details>
 
