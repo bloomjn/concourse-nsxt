@@ -26,9 +26,9 @@ Concourse can be stoodup in many different ways. In this tutorial we will stand 
 
     `cd concourse-nsxt && chmod +x generate-keys.sh`
     
-3. Generate keys for Concourse by executing the `generate.sh` file. This will create a keys directory inside of concourse-nsxt.
+3. Generate keys for Concourse by executing the `generate-keys.sh` file. This will create a keys directory inside of concourse-nsxt.
 
-    `./generate.sh`
+    `./generate-keys.sh`
 
 4. Edit the domain name and DNS server parameters in the docker-compose file Look for the **CHANGEME** parameters. This will need to match the host that you are running concourse on and the DNS server that can resolve things like vCenter and the outside world.
 
