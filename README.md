@@ -22,9 +22,9 @@ Concourse can be stoodup in many different ways. In this tutorial we will stand 
 
     `git clone https://github.com/nvpnathan/concourse-nsxt.git`
 
-2. Make [generate.sh](generate.sh) file executable
+2. Make [generate-keys.sh](generate-keys.sh) file executable
 
-    `cd concourse-nsxt && chmod +x generate.sh`
+    `cd concourse-nsxt && chmod +x generate-keys.sh`
     
 3. Generate keys for Concourse by executing the `generate.sh` file. This will create a keys directory inside of concourse-nsxt.
 
