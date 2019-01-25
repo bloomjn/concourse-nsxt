@@ -10,7 +10,7 @@ services:
     - PGDATA=/database
 
   concourse-web:
-    image: concourse/concourse:4.2.1
+    image: concourse/concourse:4.2.2
     command: web
     links: [concourse-db]
     depends_on: [concourse-db]
@@ -26,7 +26,7 @@ services:
     - CONCOURSE_MAIN_TEAM_ALLOW_ALL_USERS=true
 
   concourse-worker:
-    image: concourse/concourse:4.2.1
+    image: concourse/concourse:4.2.2
     command: worker
     privileged: true
     links: [concourse-web]
