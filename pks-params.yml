@@ -138,9 +138,9 @@ pks_tile_disable_nsx_t_precheck_errand: false
 
 pks_tile_t0_router_name: t0-pks                                 # EDIT - Name of T0 Router to be used for PKS
 pks_tile_nsx_nat_mode: true                                     # Set to true
-pks_tile_external_ip_pool_name: ip-pool-vips                    # EDIT - Name of External Floating IP Pool in NSX Mgr to be used for PKS
-pks_tile_container_ip_block_name: ip-block-pods-deployments     # EDIT - Name of Container IP Block in NSX Mgr to be used for PKS
-pks_tile_nodes_ip_block_name: ip-block-nodes-deployments        # EDIT - Name of Node IP Block in NSX Mgr to be used for PKS nodes in v1.1
+pks_tile_external_ip_pool_name: ip-pool1-vips                    # EDIT - Name of External Floating IP Pool in NSX Mgr to be used for PKS
+pks_tile_container_ip_block_name: ip-block-pks-pod-snat     # EDIT - Name of Container IP Block in NSX Mgr to be used for PKS
+pks_tile_nodes_ip_block_name: ip-block-pks-node-snat        # EDIT - Name of Node IP Block in NSX Mgr to be used for PKS nodes in v1.1
 pks_tile_vcenter_cluster_list: vlab-cna                         # EDIT - List of vcenter clusters for PKS to deploy k8s clusters
 pks_tile_nodes_dns_list: 192.168.64.60                          # EDIT - DNS server ip list for use by k8s nodes
 
